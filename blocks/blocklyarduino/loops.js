@@ -32,7 +32,7 @@ goog.require('Blockly.Blocks');
 /**
  * Common HSV hue for all blocks in this category.
  */
-Blockly.Blocks.loops.HUE = "#C88330";
+Blockly.Blocks.loops.HUE = "#e67e22";
 
 Blockly.Blocks['controls_repeat_ext'] = {
   /**
@@ -87,6 +87,29 @@ Blockly.Blocks['controls_repeat'] = {
     this.getField('TIMES').setChangeHandler(
         Blockly.FieldTextInput.nonnegativeIntegerValidator);
   }
+};
+
+
+// ajout iziMakers
+Blockly.Blocks['controls_repeat_forever'] = {
+  /**
+   * Block for 'while' loop.
+   * @this Blockly.Block
+   */
+	 
+  init: function() {
+    this.jsonInit({
+      "message0": Blockly.Msg.CONTROLS_REPEAT_FOREVER,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": Blockly.Blocks.loops.HUE,
+      "tooltip": Blockly.Msg.CONTROLS_REPEAT_TOOLTIP,
+      "helpUrl": Blockly.Msg.CONTROLS_REPEAT_HELPURL
+    });
+    this.appendStatementInput('DO')
+        .appendField(Blockly.Msg.CONTROLS_REPEAT_INPUT_DO);
+  }
+	 
 };
 
 Blockly.Blocks['controls_whileUntil'] = {

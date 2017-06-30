@@ -74,11 +74,14 @@ Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP ="Ajoute un bloc d'actions par défa
 
 Blockly.Msg.CONTROLS_REPEAT_HELPURL = "http://fr.wikipedia.org/wiki/Boucle_for";
 Blockly.Msg.CONTROLS_REPEAT_INPUT_DO = "faire";
-Blockly.Msg.CONTROLS_REPEAT_TITLE = "répéter %1 fois";
+Blockly.Msg.CONTROLS_REPEAT_TITLE = "Répéter %1 fois";
 Blockly.Msg.CONTROLS_REPEAT_TOOLTIP = "Exécuter certains ordres plusieurs fois.";
+
+Blockly.Msg.CONTROLS_REPEAT_FOREVER = "Répéter indéfiniment";			// iziMakers
+
 Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL = "https://github.com/google/blockly/wiki/Loops#repeat";  // untranslated
-Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_UNTIL = "répéter jusqu’à";
-Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "répéter tant que";
+Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_UNTIL = "Répéter jusqu’à";
+Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "Répéter tant que";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Tant qu’une valeur est fausse, alors exécuter certains ordres.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Tant qu’une valeur est vraie, alors exécuter certains ordres.";
 Blockly.Msg.DELETE_ALL_BLOCKS = "Supprimer tous les %1 blocs ?";
@@ -405,11 +408,11 @@ Blockly.Msg.LISTS_SET_INDEX_INPUT_IN_LIST = Blockly.Msg.LISTS_INLIST;
 //**********************************catégories***********************************************
 //**********************************catégories***********************************************
 
-Blockly.Msg.CAT_LOOPS = "boucles";
-Blockly.Msg.CAT_LOGIC = "logique";
+Blockly.Msg.CAT_LOOPS = "🔃   Boucles";
+Blockly.Msg.CAT_LOGIC = "💡   Logique";
 Blockly.Msg.CAT_IF = "si...";
 Blockly.Msg.CAT_BOOL = "booléen";
-Blockly.Msg.CAT_MATH = "maths";
+Blockly.Msg.CAT_MATH = "ℿ   Maths";
 Blockly.Msg.CAT_TEXT = "texte";
 Blockly.Msg.CAT_LIST = "listes";
 Blockly.Msg.CAT_COLOR = "couleurs";
@@ -434,7 +437,10 @@ Blockly.Msg.CAT_GROVE_LCD = "écran LCD";
 Blockly.Msg.CAT_GROVE_COMM = "communication";
 
 
-Blockly.Msg.CAT_IZIMAKERS = "iziMakers";
+Blockly.Msg.CAT_IZIMAKERS_VARIABLES = "∑   Variables";
+
+
+Blockly.Msg.CAT_IZIMAKERS = "iziMakers V1";
 Blockly.Msg.CAT_IZIMAKERS_DELAY = "Pause";
 Blockly.Msg.CAT_IZIMAKERS_MOTORS = "Moteurs";
 Blockly.Msg.CAT_IZIMAKERS_SENSORS = "Capteurs";
@@ -446,7 +452,7 @@ Blockly.Msg.CAT_IZIMAKERS_LCD = "LCD screen";
 Blockly.Msg.CAT_IZIMAKERS_COMM = "Communication";
 
 
-Blockly.Msg.CAT_IZIMAKERSV2 = "iziMakers V2";
+Blockly.Msg.CAT_IZIMAKERSV2 = "iziMakers V2 - Casemate";
 Blockly.Msg.CAT_IZIMAKERSV2_TIME = "Temps";
 Blockly.Msg.CAT_IZIMAKERSV2_MOTORS = "Moteurs";
 Blockly.Msg.CAT_IZIMAKERSV2_SENSORS = "Capteurs";
@@ -456,6 +462,27 @@ Blockly.Msg.CAT_IZIMAKERSV2_IN = "In";
 Blockly.Msg.CAT_IZIMAKERSV2_OUT = "Out";
 Blockly.Msg.CAT_IZIMAKERSV2_LCD = "LCD screen";
 Blockly.Msg.CAT_IZIMAKERSV2_COMM = "Communication";
+
+
+Blockly.Msg.CAT_IZIMAKERSV3 = "iziMakers";
+
+Blockly.Msg.CAT_IZIMAKERSV3_TIME = "🕒   Temps";
+Blockly.Msg.CAT_IZIMAKERSV3_MOTORS = "⚙   Moteurs";
+Blockly.Msg.CAT_IZIMAKERSV3_SENSORS = "🎤   Capteurs";
+Blockly.Msg.CAT_IZIMAKERSV3_LED = " 🔦   LED";
+
+Blockly.Msg.CAT_IZIMAKERSV3_DEBUG = "Debug";
+
+Blockly.Msg.CAT_IZIMAKERSV3_IN = "In";
+Blockly.Msg.CAT_IZIMAKERSV3_OUT = "Out";
+Blockly.Msg.CAT_IZIMAKERSV3_LCD = "LCD screen";
+Blockly.Msg.CAT_IZIMAKERSV3_COMM = "Communication";
+Blockly.Msg.CAT_IZIMAKERSV3_BT = "📶   Bluetooth";
+
+
+
+
+
 
 
 Blockly.Msg.CAT_TECHNOZONE = "TechnoZone51";  //added march 11th 2015
@@ -623,26 +650,34 @@ Blockly.Msg.CONV_tofloat="convertir en Float ";
 
 
 
+// iziMakers 
+Blockly.Msg.IZIMAKERS_VAR_DECLARE="mettre la variable";
+Blockly.Msg.IZIMAKERS_VAR_AS="en tant que";
+Blockly.Msg.IZIMAKERS_VAR_VAL="à la valeur";
+
 Blockly.Msg.IZIMAKERS_SETUP_HELPURL = "";
 Blockly.Msg.IZIMAKERS_SETUP_TEXT = "Configuration";
 Blockly.Msg.IZIMAKERS_SETUP_TOOLTIP = "Executé une fois uniquement lors de la configuration";
 
 Blockly.Msg.IZIMAKERS_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
-Blockly.Msg.IZIMAKERS_DELAY_DELAY_TIME = "Pause (en ms)";
-Blockly.Msg.IZIMAKERS_DELAY_TOOLTIP = "Définie la durée de la pause en millisecondes";
+Blockly.Msg.IZIMAKERS_DELAY_TEXT = "Attendre (en ms)";
+Blockly.Msg.IZIMAKERS_DELAY_TOOLTIP = "Définit la durée de la pause en millisecondes";
 
+Blockly.Msg.IZIMAKERS_MILLIS_HELPURL = "https://www.arduino.cc/en/Reference/Millis";
+Blockly.Msg.IZIMAKERS_MILLIS_TEXT = "temps écoulé depuis le début du programme";
+Blockly.Msg.IZIMAKERS_MILLIS_TOOLTIP = "durée en millisecondes depuis que le programme a commencé (unsigned long)";
 
 Blockly.Msg.IZIMAKERS_MOTORS_A_HELPURL = "";
 Blockly.Msg.IZIMAKERS_MOTORS_A_TEXT = "Moteur A";
 Blockly.Msg.IZIMAKERS_MOTORS_A_INPUT = "Puissance [-100 .. 100]";
 //Blockly.Msg.IZIMAKERS_MOTORS_A_EFFECT = "Motor A";
-Blockly.Msg.IZIMAKERS_MOTORS_A_TOOLTIP = "Moteur à courant continue";
+Blockly.Msg.IZIMAKERS_MOTORS_A_TOOLTIP = "Moteur à courant continu";
 
 Blockly.Msg.IZIMAKERS_MOTORS_B_HELPURL = "";
 Blockly.Msg.IZIMAKERS_MOTORS_B_TEXT = "Moteur B";
 Blockly.Msg.IZIMAKERS_MOTORS_B_INPUT = "Puissance [-100 .. 100]";
 //Blockly.Msg.IZIMAKERS_MOTORS_A_EFFECT = "Motor A";
-Blockly.Msg.IZIMAKERS_MOTORS_B_TOOLTIP = "Moteur à courant continue";
+Blockly.Msg.IZIMAKERS_MOTORS_B_TOOLTIP = "Moteur à courant continu";
 
 Blockly.Msg.IZIMAKERS_JOYSTICK_HELPURL = "";
 Blockly.Msg.IZIMAKERS_JOYSTICK_TEXT1 = "Joystick [-100 .. 100]";
@@ -676,8 +711,12 @@ Blockly.Msg.IZIMAKERSV2_SETUP_TEXT = "Configuration";
 Blockly.Msg.IZIMAKERSV2_SETUP_TOOLTIP = "Executé une fois uniquement lors de la configuration";
 
 Blockly.Msg.IZIMAKERSV2_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
-Blockly.Msg.IZIMAKERSV2_DELAY_DELAY_TIME = "Attendre (en ms)";
-Blockly.Msg.IZIMAKERSV2_DELAY_TOOLTIP = "Définie la durée de la pause en millisecondes";
+Blockly.Msg.IZIMAKERSV2_DELAY_TEXT = "Attendre (en ms)";
+Blockly.Msg.IZIMAKERSV2_DELAY_TOOLTIP = "Définit la durée de la pause en millisecondes";
+
+Blockly.Msg.IZIMAKERSV2_MILLIS_HELPURL = "https://www.arduino.cc/en/Reference/Millis";
+Blockly.Msg.IZIMAKERSV2_MILLIS_TEXT = "Temps écoulé depuis le début du programme (en ms)";
+Blockly.Msg.IZIMAKERSV2_MILLIS_TOOLTIP = "Durée en millisecondes depuis que le programme a commencé (unsigned long)";
 
 Blockly.Msg.IZIMAKERSV2_INPUT_VOLTAGE_HELPURL = "";
 Blockly.Msg.IZIMAKERSV2_INPUT_VOLTAGE_TEXT = "Tension d'alimentation (mV)";
@@ -720,6 +759,128 @@ Blockly.Msg.IZIMAKERSV2_DEBUG_IZISEND_HELPURL = "";
 Blockly.Msg.IZIMAKERSV2_DEBUG_IZISEND_TEXT = "iziSend";
 Blockly.Msg.IZIMAKERSV2_DEBUG_IZISEND_INPUT = "iziSend";
 Blockly.Msg.IZIMAKERSV2_DEBUG_IZISEND_TOOLTIP = "Send text to modules";
+
+
+Blockly.Msg.IZIMAKERSV3_SETUP_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_SETUP_TEXT = "Configuration";
+Blockly.Msg.IZIMAKERSV3_SETUP_TOOLTIP = "Executé une fois uniquement lors de la configuration";
+
+Blockly.Msg.IZIMAKERSV3_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
+Blockly.Msg.IZIMAKERSV3_DELAY_TEXT = "Attendre (en ms)";
+Blockly.Msg.IZIMAKERSV3_DELAY_TOOLTIP = "Définit la durée de la pause en millisecondes";
+
+Blockly.Msg.IZIMAKERSV3_MILLIS_HELPURL = "https://www.arduino.cc/en/Reference/Millis";
+Blockly.Msg.IZIMAKERSV3_MILLIS_TEXT = "Temps écoulé depuis le début du programme (en ms)";
+Blockly.Msg.IZIMAKERSV3_MILLIS_TOOLTIP = "Durée en millisecondes depuis que le programme a commencé (unsigned long)";
+
+Blockly.Msg.IZIMAKERSV3_INPUT_VOLTAGE_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_INPUT_VOLTAGE_TEXT = "Tension d'alimentation (mV)";
+Blockly.Msg.IZIMAKERSV3_INPUT_VOLTAGE_TOOLTIP = "Tension d'alimentation en millivolts";
+
+
+Blockly.Msg.IZIMAKERSV3_MOTORS_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_MOTORS_TEXT = "Moteur ";
+Blockly.Msg.IZIMAKERSV3_MOTORS_INPUT = "Puissance [-100 .. 100]";
+//Blockly.Msg.IZIMAKERS_MOTORS_EFFECT = "Motor A";
+Blockly.Msg.IZIMAKERSV3_MOTORS_TOOLTIP = "Moteur à courant continu";
+Blockly.Msg.IZIMAKERSV3_MOTORS_NUM = [["A", "A"], ["B", "B"]];
+
+
+Blockly.Msg.IZIMAKERSV3_MOTORS_A_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_MOTORS_A_TEXT = "Moteur A";
+Blockly.Msg.IZIMAKERSV3_MOTORS_A_INPUT = "Puissance [-100 .. 100]";
+//Blockly.Msg.IZIMAKERS_MOTORS_A_EFFECT = "Motor A";
+Blockly.Msg.IZIMAKERSV3_MOTORS_A_TOOLTIP = "Moteur à courant continu";
+
+Blockly.Msg.IZIMAKERSV3_MOTORS_B_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_MOTORS_B_TEXT = "Moteur B";
+Blockly.Msg.IZIMAKERSV3_MOTORS_B_INPUT = "Puissance [-100 .. 100]";
+//Blockly.Msg.IZIMAKERS_MOTORS_A_EFFECT = "Motor A";
+Blockly.Msg.IZIMAKERSV3_MOTORS_B_TOOLTIP = "Moteur à courant continu";
+
+
+Blockly.Msg.IZIMAKERSV3_SERVO_MOVE_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_SERVO_MOVE_TEXT = "Servomoteur ";
+Blockly.Msg.IZIMAKERSV3_SERVO_MOVE_INPUT = "Angle [0 .. 180]";
+//Blockly.Msg.IZIMAKERS_SERVO_MOVE_EFFECT = "Motor A";
+Blockly.Msg.IZIMAKERSV3_SERVO_MOVE_TOOLTIP = "Servomoteur";
+Blockly.Msg.IZIMAKERSV3_SERVO_NUM = [["A", "A"], ["B", "B"], ["C", "C"], ["D", "D"], ["E", "E"], ["F", "F"], ["G", "G"], ["H", "H"]];
+
+
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_init = "LED ";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_init_Number_of_Pixels = "Définir le nombre de LED ";
+
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor = "LED ";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Pixel_Number = "Numéro ";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Red = "Rouge (255 max) =";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Green = "Vert (255 max) =";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Blue = "Bleu (255 max) =";
+
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Hue = "Teinte [0 .. 360] ";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Saturation = "Saturation [0 .. 100] ";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_setPixelColor_Intensity = "Intensité [0 .. 100] ";
+
+
+Blockly.Msg.IZIMAKERSV3_JOYSTICK_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_JOYSTICK_TEXT1 = "Joystick";
+Blockly.Msg.IZIMAKERSV3_JOYSTICK_TEXT2 = "Axe";
+//Blockly.Msg.IZIMAKERS_JOYSTICK_INPUT = "PIN#";
+Blockly.Msg.IZIMAKERSV3_JOYSTICK_AXES = [["X  [-100 .. 100]", "x"], ["Y  [-100 .. 100]", "y"], ["Bouton  [0 .. 1]", "sw"]];
+Blockly.Msg.IZIMAKERSV3_JOYSTICK_TOOLTIP = "Joystick";
+
+Blockly.Msg.IZIMAKERSV3_ULTRASONIC_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_ULTRASONIC_TEXT = "Distance Ultrasonique";
+Blockly.Msg.IZIMAKERSV3_ULTRASONIC_INPUT = "PIN#";
+Blockly.Msg.IZIMAKERSV3_ULTRASONIC_UNIT = "unité";
+Blockly.Msg.IZIMAKERSV3_ULTRASONIC_UNIT_CHOICE = [["cm", "cm"], ["pouces", "inch"]];
+Blockly.Msg.IZIMAKERSV3_ULTRASONIC_TOOLTIP = "Mesure de distance Sonar Ultrasonique";
+
+Blockly.Msg.IZIMAKERSV3_COMM_SEND_HELPURL = "";
+//Blockly.Msg.IZIMAKERSV3_COMM_SEND_TEXT = "Envoyer";
+Blockly.Msg.IZIMAKERSV3_COMM_SEND_INPUT = "Envoyer";
+Blockly.Msg.IZIMAKERSV3_COMM_SEND_TOOLTIP = "Send text to device";
+
+Blockly.Msg.IZIMAKERSV3_COMM_RECEIVED_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_COMM_RECEIVED_TEXT = "Reçu";
+Blockly.Msg.IZIMAKERSV3_COMM_RECEIVED_TOOLTIP = "Text received from device";
+
+
+Blockly.Msg.IZIMAKERSV3_DEBUG_SERIAL_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_DEBUG_SERIAL_TEXT = "Serial debug";
+Blockly.Msg.IZIMAKERSV3_DEBUG_SERIAL_INPUT = "Serial debug";
+Blockly.Msg.IZIMAKERSV3_DEBUG_SERIAL_TOOLTIP = "Send text to host for debugging";
+
+Blockly.Msg.IZIMAKERSV3_DEBUG_IZISEND_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_DEBUG_IZISEND_TEXT = "iziSend";
+Blockly.Msg.IZIMAKERSV3_DEBUG_IZISEND_INPUT = "iziSend";
+Blockly.Msg.IZIMAKERSV3_DEBUG_IZISEND_TOOLTIP = "Send text to modules";
+
+
+Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_TEXT = "Capteur de couleurs";
+//Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_INPUT = "PIN#";
+Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_COMPONENT = "Composante";
+Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_COMPONENT_CHOICE = [["Teinte [0 .. 360]", "H"], ["Saturation [0 .. 100]", "S"], ["Valeur [0 .. 100]", "V"], ["Palette couleur", "P"]];
+//Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_COMPONENT_CHOICE = [["Rouge", "R"], ["Vert", "G"], ["Bleu", "B"], ["Teinte", "H"], ["Saturation", "S"], ["Valeur", "V"]];
+Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_TOOLTIP = "Capteur de couleurs ; Palette (0:back 1:white 2:red 3:orange 4:yellow 5:lime 6:green 7:turquoise 8:cyan 9:cobalt 10:blue 11:violet 12:magenta 13:crimson)";
+
+
+Blockly.Msg.IZIMAKERSV3_COLOR_SENSOR_HELPURL = "";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_special_effect = "Effet spécial";
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_EFFECTS_CHOICE = [["Feu", "F"]];
+Blockly.Msg.IZIMAKERSV3_NEOPIXELS_ON_OFF = [["On", "1"], ["Off", "0"]];
+
+
+Blockly.Msg.IZIMAKERSV3_BT_JoyCommander_HELPURL = "https://play.google.com/store/apps/details?id=org.projectproto.btjoystick";
+Blockly.Msg.IZIMAKERSV3_BT_JoyCommander_TEXT1 = "BT Joystick";
+Blockly.Msg.IZIMAKERSV3_BT_JoyCommander_TEXT2 = "Axe";
+Blockly.Msg.IZIMAKERSV3_BT_JoyCommander_AXES = [["X [-100 .. 100]", "x"], ["Y [-100 .. 100]", "y"], ["Bouton 1", "sw1"], ["Bouton 2", "sw2"], ["Bouton 3", "sw3"], ["Bouton 4", "sw4"], ["Bouton 5", "sw5"], ["Bouton 6", "sw6"]];
+Blockly.Msg.IZIMAKERSV3_BT_JoyCommander_TOOLTIP = "BT Joystick to be used with Android App \"Joystick bluetooth Commander\" from kas_dev";
+
+
+
+
+
 
 
 

@@ -132,6 +132,14 @@ Blockly.Arduino.controls_repeat_ext = function() {
   return code;
 };
 
+// ajout iziMakers
+Blockly.Arduino.controls_repeat_forever = function() {
+	var branch = Blockly.Arduino.statementToCode(this, 'DO');
+  return 'while (true) {\n' + branch + '\n  process();\n}\n';
+};
+
+
+
 Blockly.Arduino.controls_whileUntil = function() {
   // Do while/until loop.
   var argument0 = Blockly.Arduino.valueToCode(this, 'BOOL',

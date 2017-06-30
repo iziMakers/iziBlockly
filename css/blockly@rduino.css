@@ -44,18 +44,18 @@ body {
 
 #divBody {
     position: absolute;
-    top: 66px;
+    top: 100px;						/* iziMakers */
     bottom: 5px;
     width: 100%;
 }
 
 .menuPanel-ver {
 
-	margin-top: 20px;		/* iziMakers */
+	margin-top: 0px;		/* iziMakers */
 	
 	clear: both;
 	float: left;
-	width: 205px;
+	/*width: 205px;	*/			/* iziMakers */
     padding-left: 5px;
 	padding-right: 5px;
 	position: absolute;
@@ -135,7 +135,7 @@ html[dir="RTL"] .navbar-right {
 
 .divTabpanel-ver {
     height: 100%;
-    margin-left:205px;
+    margin-left:50px;		/* iziMakers */
 }
 
 html[dir="RTL"] .divTabpanel-ver {
@@ -396,11 +396,13 @@ html[dir="RTL"] #select_all {
 }
 
 .blocklyToolboxDiv {
-	background-color: #e9f9f9 !important;
+	background-color: #eee !important;		/* iziMakers modified */
+	
+	left: 50px !important;		/* iziMakers */
 }
 
 .blocklyFlyoutBackground {
-	fill: #e9f9f9 !important;
+	fill: #eee !important;		/* iziMakers modified */
 }
 
 .blocklyTreeRoot {
@@ -413,15 +415,15 @@ html[dir="RTL"] #select_all {
 
 .blocklyToolboxDiv .blocklyTreeRoot [role="treeitem"]	.blocklyTreeRow {
 	line-height: normal !important;
-	padding: 6px 50px 6px 12px !important;
+	padding: 20px 50px 6px 12px !important;		/* iziMakers modified */
 }
 
 html[dir="RTL"] .blocklyToolboxDiv .blocklyTreeRoot [role="treeitem"]   .blocklyTreeRow {
-    padding: 6px 12px 6px 50px !important;
+    padding: 6px 12px 6px 50px !important;		
 }
 
 .blocklyTreeRow {
-	height: 30px !important;
+	height: 60px !important;									/* iziMakers modified */
 	line-height: 30px !important;
 }
 

@@ -30,7 +30,7 @@ goog.require('Blockly.Blocks');
 
 Blockly.Blocks.inout_angle_maths = {
   init: function() {
-    this.setColour("#5CB712");
+    this.setColour("#27ae60");
 	this.setHelpUrl('https://developers.google.com/blockly/custom-blocks/defining-blocks#appendfield');
     this.appendDummyInput("")
         .appendField("angle")
@@ -43,7 +43,7 @@ Blockly.Blocks.inout_angle_maths = {
 /**
  * Common HSV hue for all blocks in this category.
  */
-Blockly.Blocks.math.HUE = "#5CB712";
+Blockly.Blocks.math.HUE = "#27ae60";
 
 Blockly.Blocks['math_number'] = {
   /**

@@ -219,7 +219,12 @@ Blockly.Arduino.init = function(workspace) {
   // Create a dictionary mapping desired function names in process_	
 	Blockly.Arduino.process_start_ = Object.create(null);	
 	Blockly.Arduino.process_module_ = Object.create(null);	
+	Blockly.Arduino.process_module_input_ = Object.create(null);		// new for V3
+	Blockly.Arduino.process_module_output_ = Object.create(null);		// new for V3
 	Blockly.Arduino.process_end_ = Object.create(null);
+	
+	// iziVariables
+	Blockly.Arduino.iziVariables_ = Object.create(null);
 	// *** Ajout iziMakers ***
 
   if (Blockly.Variables) {
@@ -230,14 +235,25 @@ Blockly.Arduino.init = function(workspace) {
       Blockly.Arduino.variableDB_.reset();
     }
 
-    var defvars = [];
+		// *** Modifications iziMakers ***
+		var defvars = [];
     var variables = Blockly.Variables.allVariables(workspace);
     for (var x = 0; x < variables.length; x++) {
-      defvars[x] = 'int ' +
-          Blockly.Arduino.variableDB_.getName(variables[x],
-          Blockly.Variables.NAME_TYPE) + ';\n';
+			var varName = Blockly.Arduino.variableDB_.getName(variables[x], Blockly.Variables.NAME_TYPE);
+			defvars[x] = 'int ' + varName + ';\n';
+			
+			/*if(Blockly.Arduino.iziVariables_ && Blockly.Arduino.iziVariables_[varName]) {
+				defvars[x] = Blockly.Arduino.iziVariables_[varName] + ' ' + varName + ';\n';
+			}
+			else {
+				defvars[x] = 'int ' + varName + ';\n';
+			}*/
+			
+			//Blockly.Arduino.definitions_['variables'] = defvars.join('\n');
+			Blockly.Arduino.definitions_['variables_'+varName] = defvars[x];	//'int ' + varName + ';' ;
     }
-    Blockly.Arduino.definitions_['variables'] = defvars.join('\n');
+    //Blockly.Arduino.definitions_['variables'] = defvars.join('\n');
+		// *** Modifications iziMakers ***
   }
 };
 
@@ -249,19 +265,31 @@ Blockly.Arduino.init = function(workspace) {
 Blockly.Arduino.finish = function(code) {
 
 	// *** Ajout iziMakers ***
+	
+	console.log("Blockly.Arduino.finish");
+	
 	// Convert the process dictionary into a list.
   var processes = [];
   for (var name in Blockly.Arduino.process_start_) {
     processes.push(Blockly.Arduino.process_start_[name]);
   }
+	
   for (var name in Blockly.Arduino.process_module_) {
     processes.push(Blockly.Arduino.process_module_[name]);
   }
+  for (var name in Blockly.Arduino.process_module_input_) {
+    processes.push(Blockly.Arduino.process_module_input_[name]);
+  }
+  for (var name in Blockly.Arduino.process_module_output_) {
+    processes.push(Blockly.Arduino.process_module_output_[name]);
+  }
+	
   for (var name in Blockly.Arduino.process_end_) {
     processes.push(Blockly.Arduino.process_end_[name]);
   }
 	var codeProcesses = 'void process() \n{\n  ' + processes.join('\n  ') + '\n}'+ '\n\n';
 	// *** Ajout iziMakers ***
+	
 
   // Indent every line.
   code = '  ' + code.replace(/\n/g, '\n  ');

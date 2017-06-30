@@ -79,6 +79,9 @@ Blockly.Msg.CONTROLS_REPEAT_HELPURL = "https://en.wikipedia.org/wiki/For_loop";
 Blockly.Msg.CONTROLS_REPEAT_INPUT_DO = "do";
 Blockly.Msg.CONTROLS_REPEAT_TITLE = "repeat %1 times";
 Blockly.Msg.CONTROLS_REPEAT_TOOLTIP = "Do some statements several times.";
+
+Blockly.Msg.CONTROLS_REPEAT_FOREVER = "Repeat forever";		// iziMakers
+
 Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL = "https://github.com/google/blockly/wiki/Loops#repeat";
 Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_UNTIL = "repeat until";
 Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "repeat while";
@@ -627,6 +630,11 @@ Blockly.Msg.IZIMAKERS_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
 Blockly.Msg.IZIMAKERS_DELAY_DELAY_TIME = "Delay (in ms)";
 Blockly.Msg.IZIMAKERS_DELAY_TOOLTIP = "Specify the pause time in milliseconds";
 
+Blockly.Msg.IZIMAKERS_MILLIS_HELPURL = "https://www.arduino.cc/en/Reference/Millis";
+Blockly.Msg.IZIMAKERS_MILLIS_TIME = "time since program started";
+Blockly.Msg.IZIMAKERS_MILLIS_TOOLTIP = "Number of milliseconds since the program started (unsigned long)";
+
+
 Blockly.Msg.IZIMAKERS_MOTORS_A_HELPURL = "";
 Blockly.Msg.IZIMAKERS_MOTORS_A_TEXT = "Motor A";
 Blockly.Msg.IZIMAKERS_MOTORS_A_INPUT = "Power [-100 .. 100]";
@@ -670,8 +678,13 @@ Blockly.Msg.IZIMAKERSV2_SETUP_TEXT = "Setup";
 Blockly.Msg.IZIMAKERSV2_SETUP_TOOLTIP = "Executed only during setup";
 
 Blockly.Msg.IZIMAKERSV2_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
-Blockly.Msg.IZIMAKERSV2_DELAY_DELAY_TIME = "Delay (in ms)";
+Blockly.Msg.IZIMAKERSV2_DELAY_TEXT = "Delay (in ms)";
 Blockly.Msg.IZIMAKERSV2_DELAY_TOOLTIP = "Specify the pause time in milliseconds";
+
+Blockly.Msg.IZIMAKERSV2_MILLIS_HELPURL = "https://www.arduino.cc/en/Reference/Millis";
+Blockly.Msg.IZIMAKERSV2_MILLIS_TEXT = "Time since program started (in ms)";
+Blockly.Msg.IZIMAKERSV2_MILLIS_TOOLTIP = "Number of milliseconds since the program started (unsigned long)";
+
 
 Blockly.Msg.IZIMAKERSV2_MOTORS_A_HELPURL = "";
 Blockly.Msg.IZIMAKERSV2_MOTORS_A_TEXT = "Motor A";

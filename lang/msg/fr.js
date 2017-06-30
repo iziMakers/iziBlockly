@@ -2,12 +2,12 @@ var MSG = {
   title: "",
   labelArduinoCard: "carte ",
   btn_switch: " modifier orientation du menu",
-  span_config: " configurer les blocs",
+  span_config: " ",		// configurer les blocs
   span_picture: " afficher la carte",
   span_supervision: " supervision de la carte",
   span_delete: " effacer TOUS les blocs",
-  span_saveXML:" sauver en fichier XML",
-  span_fakeload:" charger un fichier XML",
+  span_saveXML:" ",		// sauver en fichier XML
+  span_fakeload:" ",		// charger un fichier XML
   span_example: " ouvrir un exemple",
   span_doc: " documentation",
   span_tuto: " tutoriel",
@@ -24,9 +24,9 @@ var MSG = {
   button_saveArduino: "sauvegarde en fichier INO",
   span_pasteIDEArduino: "copier dans l'IDE Arduino",
   span_connect_serial: " connecter la console série",
-  a_blocks:" blocs",
-  a_arduino:" code",			// iziMakers
-  a_term:" console Série",
+  a_blocks:" ",			// iziMakers
+  a_arduino:" ",			// iziMakers
+  a_term:" ",		// iziMakers
   a_xml:" traduction XML",
   configModalLabel:"choix des catégories de blocs",
   span_select_all:"toutes",

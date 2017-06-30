@@ -271,7 +271,14 @@ BlocklyDuino.valideEditedCode = function() {
  * Render Arduino code in preview box
  */
 BlocklyDuino.renderArduinoCodePreview = function() {
-	$('#pre_previewArduino').text(Blockly.Arduino.workspaceToCode(BlocklyDuino.workspace));
+
+	console.log("BlocklyDuino.renderArduinoCodePreview");
+	
+	var data = Blockly.Arduino.workspaceToCode(BlocklyDuino.workspace);
+	
+	//console.log(data);
+	
+	$('#pre_previewArduino').text(data);
 	if (typeof prettyPrintOne == 'function') {
 		$('#pre_previewArduino').html(prettyPrintOne($('#pre_previewArduino').html(), 'cpp'));
 	}
@@ -684,7 +691,7 @@ BlocklyDuino.buildToolbox = function() {
 	
 	// set the default toolbox if none
 	if (loadIds === undefined || loadIds === "") {
-		loadIds = "CAT_LOGIC,CAT_LOOPS,CAT_VARIABLES,CAT_FUNCTIONS,CAT_MATH,CAT_TEXT,CAT_IZIMAKERSV2";
+		loadIds = "CAT_LOGIC,CAT_LOOPS,CAT_MATH,CAT_IZIMAKERS_VARIABLES,CAT_IZIMAKERSV3_TIME,CAT_IZIMAKERSV3_MOTORS,CAT_IZIMAKERSV3_SENSORS,CAT_IZIMAKERSV3_LED,CAT_IZIMAKERSV3_COMM,CAT_IZIMAKERSV3_COMM,CAT_IZIMAKERSV3_BT"; // CAT_VARIABLES,CAT_TEXT,CAT_FUNCTIONS,
 	}
 
 	window.localStorage.toolboxids = loadIds;
@@ -833,6 +840,9 @@ BlocklyDuino.init = function() {
 	$(document).ready(
 		// load the compilerflasher module
 		function() {
+		
+			console.log("load the compilerflasher module");
+			
 			compilerflasher = new compilerflasher(BlocklyDuino.getFiles);
 					
 			compilerflasher.on("pre_verify", function() {

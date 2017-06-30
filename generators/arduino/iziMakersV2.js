@@ -28,7 +28,7 @@ goog.require('Blockly.Arduino');
 
 
 
-SetiziOs1 = function () {
+iziV2SetiziOs1 = function () {
 
 	// PC Serial
 	//Blockly.Arduino.setups_['setup_serial_' + profile.defaultBoard.serial] = 'Serial.begin(' + profile.defaultBoard.serial + ');\n';
@@ -39,7 +39,7 @@ SetiziOs1 = function () {
 	//Blockly.Arduino.definitions_['include_ArduinoJson'] = '#include <ArduinoJson.h>\n';
 	Blockly.Arduino.definitions_['include_ArduinoJson'] = '#include <aJSON.h>\n';
   Blockly.Arduino.definitions_['include_SoftwareSerial'] = '#include <SoftwareSerial.h>\n';
-	Blockly.Arduino.definitions_['define_pins'] = '#define PIN_RX 2\n#define PIN_TX 3\n#define PIN_RE 4\n#define PIN_DE 5\n#define PIN_LED 13\n';
+	Blockly.Arduino.definitions_['define_pins'] = '#define PIN_RX 2\n#define PIN_TX 3\n#define PIN_RE 4\n#define PIN_DE 5\n//#define PIN_LED 13\n';
 	Blockly.Arduino.definitions_['define_buffer_sizes'] = '#define INBUFFER_SIZE 256\n#define OUTBUFFER_SIZE 256\n//#define JSON_BUFFER_SIZE 512\n';
 	Blockly.Arduino.definitions_['define_buffers'] = 'int inBuffer_i = 0;\nchar outBuffer[OUTBUFFER_SIZE];\nint outBuffer_len = 0;\n';
 	Blockly.Arduino.definitions_['define_baudrate'] = 'long baudrate_Bus = 9600;\n';
@@ -51,11 +51,11 @@ SetiziOs1 = function () {
 	
   Blockly.Arduino.definitions_['define_vars'] = 'boolean stringComplete = false;\nboolean receiving = false;\nboolean sendOutput = false;\nunsigned long lastSerialRecevied = 0;\n';
 	
-  Blockly.Arduino.definitions_['define_fcn_readSerial'] = 'void readSerial(char *inBuf) {\n  if (iziSerial.available()) {\n    digitalWrite(PIN_LED, HIGH);\n\n    if (receiving) {\n      Serial.println("RX not finished");\n    }\n\n    memset(inBuf, (char)0, INBUFFER_SIZE);\n    inBuffer_i = 0;\n    stringComplete = false;\n\n    Serial.write(\'[\');\n    while (iziSerial.available()) {\n      receiving = true;\n      // get the new byte:\n      char inChar = (char)iziSerial.read();\n      //Serial.write(inChar);\n      // add it to the inputString:\n      //inputString += inChar;\n      if (inChar != \'\\n\') {\n        Serial.write(inChar);\n        inBuf[inBuffer_i] = inChar;\n        inBuffer_i += 1;\n        inBuf[inBuffer_i] = (char)0;\n      }\n      // if the incoming character is a newline, set a flag\n      // so the main loop can do something about it:\n      if (inChar == \'\\n\') {\n        stringComplete = true;\n        receiving = false;\n        //Serial.println("> " + inputString);\n        //Serial.println("> " + String(inBuffer));\n        Serial.write(\']\');\n        Serial.write(\'>\');\n        Serial.write(\' \');\n        for (int i = 0 ; i < inBuffer_i ; i++) {\n          Serial.write(inBuf[i]);\n        }\n        Serial.write(\'\\n\');\n      }\n     \n      if(! iziSerial.available()) {\n        // on se laisse une chance de récupérer d\'autres caractères\n        delayMicroseconds(200);\n      }\n    }\n    lastSerialRecevied = millis();\n\n    if(receiving) {\n      receiving = false;\n      Serial.println("RX not finished properly");\n    }\n\n    digitalWrite(PIN_LED, LOW);\n  }\n}\n';
+  Blockly.Arduino.definitions_['define_fcn_readSerial'] = 'void readSerial(char *inBuf) {\n  if (iziSerial.available()) {\n    //digitalWrite(PIN_LED, HIGH);\n\n    if (receiving) {\n      Serial.println("RX not finished");\n    }\n\n    memset(inBuf, (char)0, INBUFFER_SIZE);\n    inBuffer_i = 0;\n    stringComplete = false;\n\n    Serial.write(\'[\');\n    while (iziSerial.available()) {\n      receiving = true;\n      // get the new byte:\n      char inChar = (char)iziSerial.read();\n      //Serial.write(inChar);\n      // add it to the inputString:\n      //inputString += inChar;\n      if (inChar != \'\\n\') {\n        Serial.write(inChar);\n        inBuf[inBuffer_i] = inChar;\n        inBuffer_i += 1;\n        inBuf[inBuffer_i] = (char)0;\n      }\n      // if the incoming character is a newline, set a flag\n      // so the main loop can do something about it:\n      if (inChar == \'\\n\') {\n        stringComplete = true;\n        receiving = false;\n        //Serial.println("> " + inputString);\n        //Serial.println("> " + String(inBuffer));\n        Serial.write(\']\');\n        Serial.write(\'>\');\n        Serial.write(\' \');\n        for (int i = 0 ; i < inBuffer_i ; i++) {\n          Serial.write(inBuf[i]);\n        }\n        Serial.write(\'\\n\');\n      }\n     \n      if(! iziSerial.available()) {\n        // on se laisse une chance de récupérer d\'autres caractères\n        delayMicroseconds(200);\n      }\n    }\n    lastSerialRecevied = millis();\n\n    if(receiving) {\n      receiving = false;\n      Serial.println("RX not finished properly");\n    }\n\n    //digitalWrite(PIN_LED, LOW);\n  }\n}\n';
 
-  Blockly.Arduino.definitions_['define_sendSerial'] = 'void sendSerial() {\n  if (sendOutput) {\n    if (!receiving) {\n      if (!iziSerial.available()) {\n        digitalWrite(PIN_LED, HIGH);\n        setTX();\n        Serial.write(\'<\');\n        Serial.write(\' \');\n        for (int i = 0 ; i < outBuffer_len ; i++) {\n          iziSerial.write(outBuffer[i]);\n          Serial.write(outBuffer[i]);\n        }\n        iziSerial.write(\'\\n\');\n        Serial.write(\'\\n\');\n        setRX();\n        sendOutput = false;\n        digitalWrite(PIN_LED, LOW);\n      }\n      else {\n        Serial.println("no send:available" );\n      }\n    }\n    else {\n      Serial.println("no send:receiving" );\n    \n    if( millis() - lastSerialRecevied > 100) {\n        receiving = false;\n      }}\n  }\n}\n';
+  Blockly.Arduino.definitions_['define_sendSerial'] = 'void sendSerial() {\n  if (sendOutput) {\n    if (!receiving) {\n      if (!iziSerial.available()) {\n        //digitalWrite(PIN_LED, HIGH);\n        setTX();\n        Serial.write(\'<\');\n        Serial.write(\' \');\n        for (int i = 0 ; i < outBuffer_len ; i++) {\n          iziSerial.write(outBuffer[i]);\n          Serial.write(outBuffer[i]);\n        }\n        iziSerial.write(\'\\n\');\n        Serial.write(\'\\n\');\n        setRX();\n        sendOutput = false;\n        //digitalWrite(PIN_LED, LOW);\n      }\n      else {\n        Serial.println("no send:available" );\n      }\n    }\n    else {\n      Serial.println("no send:receiving" );\n    \n    if( millis() - lastSerialRecevied > 100) {\n        receiving = false;\n      }}\n  }\n}\n';
 
-	Blockly.Arduino.setups_['setup_iziSerial'] = 'iziSerial.begin(baudrate_Bus);\n  pinMode(PIN_RE, OUTPUT);\n  pinMode(PIN_DE, OUTPUT);\n  setRX();\n  pinMode(PIN_LED, OUTPUT);\n  digitalWrite(PIN_LED, LOW);\n';
+	Blockly.Arduino.setups_['setup_iziSerial'] = 'iziSerial.begin(baudrate_Bus);\n  pinMode(PIN_RE, OUTPUT);\n  pinMode(PIN_DE, OUTPUT);\n  setRX();\n  //pinMode(PIN_LED, OUTPUT);\n  //digitalWrite(PIN_LED, LOW);\n';
 	
 	// Modules management
   Blockly.Arduino.definitions_['define_vars_modules'] = '#define NB_MODULES_MAX 3\nint nb_modules = 0;\nunsigned long modules_SN[NB_MODULES_MAX];\nunsigned long modules_last[NB_MODULES_MAX];\nunsigned long lastSent = 0;\n';
@@ -69,19 +69,26 @@ SetiziOs1 = function () {
 	// Mesure tension d'alimentation
 	Blockly.Arduino.definitions_['define_vars_measureDC'] = '#define PIN_DC  A0\nint inputMesureDC = 0;\nint inputMesureDC_x = 5545;      // multiplicateur pour obtenir des mV\n';
 	/*Blockly.Arduino.definitions_['define_fcn_measureDC'] = 'void measureDC() { \n  int v_max = 5 * inputMesureDC_x;\n  inputMesureDC = map(analogRead(PIN_DC), 0, 1023, 0, v_max);\n}\n';*/
-	Blockly.Arduino.definitions_['define_fcn_measureDC'] = 'void measureDC() { \n  inputMesureDC = readVcc();\n}\n';
-	Blockly.Arduino.definitions_['define_fcn_readVcc'] = 'long readVcc() {\n  // Read 1.1V reference against AVcc\n  // set the reference to Vcc and the measurement to the internal 1.1V reference\n  #if defined(__AVR_ATmega32U4__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)\n    ADMUX = _BV(REFS0) | _BV(MUX4) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);\n  #elif defined (__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)\n    ADMUX = _BV(MUX5) | _BV(MUX0);\n  #elif defined (__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)\n    ADMUX = _BV(MUX3) | _BV(MUX2);\n  #else\n    ADMUX = _BV(REFS0) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);\n  #endif  \n\n  delay(2); // Wait for Vref to settle\n  ADCSRA |= _BV(ADSC); // Start conversion\n  while (bit_is_set(ADCSRA,ADSC)); // measuring\n\n  uint8_t low  = ADCL; // must read ADCL first - it then locks ADCH  \n  uint8_t high = ADCH; // unlocks both\n\n  long result = (high<<8) | low;\n\n  result = 1125300L / result; // Calculate Vcc (in mV); 1125300 = 1.1*1023*1000\n  return result; // Vcc in millivolts\n}\n';
+	Blockly.Arduino.definitions_['define_fcn_measureDC'] = 'void measureDC() { \n  int sensorValue = analogRead(PIN_DC);\n  inputMesureDC = sensorValue *27;\n  //inputMesureDC = readVcc();\n}\n';
+	/*Blockly.Arduino.definitions_['define_fcn_readVcc'] = 'long readVcc() {\n  // Read 1.1V reference against AVcc\n  // set the reference to Vcc and the measurement to the internal 1.1V reference\n  #if defined(__AVR_ATmega32U4__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)\n    ADMUX = _BV(REFS0) | _BV(MUX4) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);\n  #elif defined (__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)\n    ADMUX = _BV(MUX5) | _BV(MUX0);\n  #elif defined (__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)\n    ADMUX = _BV(MUX3) | _BV(MUX2);\n  #else\n    ADMUX = _BV(REFS0) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);\n  #endif  \n\n  delay(2); // Wait for Vref to settle\n  ADCSRA |= _BV(ADSC); // Start conversion\n  while (bit_is_set(ADCSRA,ADSC)); // measuring\n\n  uint8_t low  = ADCL; // must read ADCL first - it then locks ADCH  \n  uint8_t high = ADCH; // unlocks both\n\n  long result = (high<<8) | low;\n\n  result = 1125300L / result; // Calculate Vcc (in mV); 1125300 = 1.1*1023*1000\n  return result; // Vcc in millivolts\n}\n';*/
 	Blockly.Arduino.definitions_['define_fcn_getMeasureDC'] = 'int getMeasureDC() { \n  process();\n  return inputMesureDC;\n}\n';
-	Blockly.Arduino.definitions_['define_fcn_printDC'] = 'void printDC() { \n  Serial.print("DC:");\n  Serial.println(inputMesureDC);\n}\n';
+	Blockly.Arduino.definitions_['define_fcn_printDC'] = 'void printDC() { \n  Serial.print("{\\"DC\\":");\n  Serial.print(inputMesureDC);\n  Serial.println("}");\n}\n';
 	
+	
+	
+	Blockly.Arduino.setups_['setup_waitforModules'] = 'while(nb_modules == 0) {process();}\n';
 };
 
-SetiziOs2 = function () {
+iziV2SetiziOs2 = function () {
 	Blockly.Arduino.process_end_['process_questionModules'] = 'questionModules();\n';
 	Blockly.Arduino.process_end_['process_sendSerial'] = 'sendSerial();\n';
 };
 
-SetMotorsFunctions = function () {
+
+
+
+
+iziV2SetMotorsFunctions = function () {
 	// Motors
 	Blockly.Arduino.definitions_['motors_vars'] = 'int motorA_speed = 0;\nint motorA_speed_target = 0;\nint motorB_speed = 0;\nint motorB_speed_target = 0;\nunsigned long lastMotors = 0;\nint SN_Motors = 101;\n';
 	Blockly.Arduino.definitions_['motors_fcn_processModuleMotorsInput'] = 'void processModuleMotorsInput(unsigned long SN, char * inBuffer) {\n  if (isModuleKnown(SN_Motors)) {\n    if (SN > 0) {\n      if (SN == SN_Motors) {\n        aJsonObject* root = aJson.parse(inBuffer);\n        if (root != NULL) {\n          //aJsonObject* obj;\n          //obj = aJson.getObjectItem(root, "a");\n          if (aJson.getObjectItem(root, "a") != NULL) {\n            motorA_speed = aJson.getObjectItem(root, "a")->valueint;\n            lastMotors = millis();\n          }\n          //aJsonObject* b_ = aJson.getObjectItem(root, "b");\n          if (aJson.getObjectItem(root, "b") != NULL) {\n            motorB_speed = aJson.getObjectItem(root, "b")->valueint;\n            lastMotors = millis();\n          }\n        }\n        else {\n          Serial.print("M in: err");\n        }\n        aJson.deleteItem(root);\n      }\n    }\n  }\n}\n';
@@ -91,7 +98,7 @@ SetMotorsFunctions = function () {
 	Blockly.Arduino.process_module_['process_motors_output'] = 'processModuleMotorsOutput();\n';
 };
 
-SetJoysticksFunctions = function () {
+iziV2SetJoysticksFunctions = function () {
 	// Joystick
 	Blockly.Arduino.definitions_['joysticks_vars'] = 'int J1X = 0;\nint J1Y = 0;\nint J1SW = 0;\nint J2X = 0;\nint J2Y = 0;\nint J2SW = 0;\nunsigned long lastJoystick = 0;\nint SN_Joystick = 101;\n';
 	Blockly.Arduino.definitions_['joysticks_fcn_processModuleJoysticksInput'] = 'void processModuleJoysticksInput(unsigned long SN, char * inBuffer) {\n  if (isModuleKnown(SN_Joystick)) {\n    if (SN > 0) {\n      if (SN == SN_Joystick) {\n        aJsonObject* root = aJson.parse(inBuffer);\n        if (root != NULL) {\n          //Serial.println("Jin:");\n          //Serial.print(inBuffer);\n          if (aJson.getObjectItem(root, "JX") != NULL) {\n            J1X = (int)aJson.getObjectItem(root, "JX")->valueint;\n            Serial.print("J1X:");\n            Serial.println(J1X);\n            lastJoystick = millis();\n          }\n          if (aJson.getObjectItem(root, "JY") != NULL) {\n            J1Y = (int)aJson.getObjectItem(root, "JY")->valueint;\n            Serial.print("J1Y:");\n            Serial.println(J1Y);\n            lastJoystick = millis();\n          }\n          if (aJson.getObjectItem(root, "JSW") != NULL) {\n            J1SW = (int)aJson.getObjectItem(root, "JSW")->valueint;\n            Serial.print("J1SW:");\n            Serial.println(J1SW);\n            lastJoystick = millis();\n          }\n        }\n        else {\n          Serial.println("Jin:err");\n        }\n        aJson.deleteItem(root);\n      }\n    }\n  }\n}\n';
@@ -102,10 +109,10 @@ SetJoysticksFunctions = function () {
 	//Blockly.Arduino.process_module_['process_joysticks_output'] = 'processModuleJoysticksOutput();\n';
 };
 
-SetUltrasonicFunctions = function () {
+iziV2SetUltrasonicFunctions = function () {
 	// Ultrasonic
 	Blockly.Arduino.definitions_['ultrasonic_vars'] = 'int ultrasonic_cm = 0;\nunsigned long lastUltrasonic = 0;\nint SN_Ultrasonic = 101;\n';
-	Blockly.Arduino.definitions_['ultrasonic_fcn_processModuleUltrasonicInput'] = 'void processModuleUltrasonicInput(unsigned long SN, char * inBuffer) {\n  if (isModuleKnown(SN_Ultrasonic)) {\n    if (SN > 0) {\n      if (SN == SN_Ultrasonic) {\n        aJsonObject* root = aJson.parse(inBuffer);\n        if (root != NULL) {\n          //Serial.print(inBuffer);\n          //aJsonObject* obj;\n          //obj = aJson.getObjectItem(root, "US");\n          if (aJson.getObjectItem(root, "US") != NULL) {\n            ultrasonic_cm = (int)aJson.getObjectItem(root, "US")->valueint;\n            Serial.print("US_cm:");\n            Serial.println(ultrasonic_cm);\n            lastUltrasonic = millis();\n          }\n          //aJson.deleteItem(obj);\n        }\n        else {\n          Serial.print("USin:err");\n        }\n        aJson.deleteItem(root);\n      }\n    }\n  }\n}\n';
+	Blockly.Arduino.definitions_['ultrasonic_fcn_processModuleUltrasonicInput'] = 'void processModuleUltrasonicInput(unsigned long SN, char * inBuffer) {\n  if (isModuleKnown(SN_Ultrasonic)) {\n    if (SN > 0) {\n      if (SN == SN_Ultrasonic) {\n        aJsonObject* root = aJson.parse(inBuffer);\n        if (root != NULL) {\n          //Serial.print(inBuffer);\n          //aJsonObject* obj;\n          //obj = aJson.getObjectItem(root, "US");\n          if (aJson.getObjectItem(root, "US") != NULL) {\n            ultrasonic_cm = (int)aJson.getObjectItem(root, "US")->valueint;\n            if(ultrasonic_cm == 0){ultrasonic_cm = 300;}\n            Serial.print("US_cm:");\n            Serial.println(ultrasonic_cm);\n            lastUltrasonic = millis();\n          }\n          //aJson.deleteItem(obj);\n        }\n        else {\n          Serial.print("USin:err");\n        }\n        aJson.deleteItem(root);\n      }\n    }\n  }\n}\n';
 	/*Blockly.Arduino.definitions_['ultrasonic_fcn_processModuleUltrasonicOutput'] = 'void processModuleUltrasonicOutput() {\n  if (!sendOutput) {\n    if (millis() > lastUltrasonic + 300) {\n      if (isModuleKnown(SN_Ultrasonic)) {\n        Serial.print("Ultrasonic:");\n        aJsonObject* objectJSON = aJson.createObject();\n        aJson.addItemToObject(objectJSON, "sn", aJson.createItem(SN_Ultrasonic));\n        aJson.addItemToObject(objectJSON, "US", aJson.createItem(1));\n        if (objectJSON != NULL) {\n          char* msg = aJson.print(objectJSON);\n          int i = 0;\n          while (*(msg + i) != \'\\0\') {\n            outBuffer[i] = *(msg + i);\n            Serial.write(outBuffer[i]);\n            i += 1;\n          }\n          outBuffer_len = i;\n          free(msg);\n          sendOutput = true;\n          Serial.println(":done");\n        }\n        else {\n          Serial.println("objectJSON = NULL");\n        }\n        aJson.deleteItem(objectJSON);\n      }\n      lastUltrasonic = millis();\n    }\n  }\n}\n';
 	*/
 	Blockly.Arduino.definitions_['joysticks_fcn_getUltrasonicValues'] = 'int getUltrasonic() {\n  process();\n  return ultrasonic_cm;\n}\n\nint getUltrasonic_inch() {\n  process();\n  return (int)(ultrasonic_cm / 2.54);\n}\n';
@@ -131,21 +138,25 @@ Blockly.Arduino.iziMakersV2_delay = function() {
 	
   Blockly.Arduino.definitions_['define_fcn_pause'] = 'void pause(unsigned long length_ms) {\n  unsigned long start_ms = millis();\n  while(millis() < start_ms + length_ms) {\n    process();\n  }\n}\n';
 	
-	SetiziOs1();
-	SetiziOs2();
+	iziV2SetiziOs1();
+	iziV2SetiziOs2();
 	
   var code = 'pause(' + delay_time + ');\n';
   return code;
 };
 
+Blockly.Arduino.iziMakersV2_millis = function(block) {
+  var code = 'millis()';
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino.iziMakersV2_input_voltage = function() {
 
-	SetiziOs1();
+	iziV2SetiziOs1();
 	//SetUltrasonicFunctions();
-	SetiziOs2();
+	iziV2SetiziOs2();
   
 	var code = 'getMeasureDC()';
-
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
@@ -155,9 +166,9 @@ Blockly.Arduino.iziMakersV2_motors_a = function() {
   //var dropdown_pin = this.getFieldValue('PIN');
   //var dropdown_stat = this.getFieldValue('STAT');
 	
-	SetiziOs1();
-	SetMotorsFunctions();
-	SetiziOs2();
+	iziV2SetiziOs1();
+	iziV2SetMotorsFunctions();
+	iziV2SetiziOs2();
 	
 	var code = 'motorA_speed_target = ' + motor_power + ';\nprocess();\n';
   return code;
@@ -168,9 +179,9 @@ Blockly.Arduino.iziMakersV2_motors_b = function() {
   //var dropdown_pin = this.getFieldValue('PIN');
   //var dropdown_stat = this.getFieldValue('STAT');
 	
-	SetiziOs1();
-	SetMotorsFunctions();
-	SetiziOs2();
+	iziV2SetiziOs1();
+	iziV2SetMotorsFunctions();
+	iziV2SetiziOs2();
 	
 	var code = 'motorB_speed_target = ' + motor_power + ';\nprocess();\n';
   return code;
@@ -186,9 +197,9 @@ Blockly.Arduino.iziMakersV2_thumb_joystick =  function() {
     //stickPIN = dropdown_pin;
   }*/
 	
-	SetiziOs1();
-	SetJoysticksFunctions();
-	SetiziOs2();
+	iziV2SetiziOs1();
+	iziV2SetJoysticksFunctions();
+	iziV2SetiziOs2();
   
 	var code = '';
   if(dropdown_axis==="y"){
@@ -210,9 +221,9 @@ Blockly.Arduino.iziMakersV2_ultrasonic_ranger = function() {
 
   var dropdown_unit = this.getFieldValue('UNIT');
 	
-	SetiziOs1();
-	SetUltrasonicFunctions();
-	SetiziOs2();
+	iziV2SetiziOs1();
+	iziV2SetUltrasonicFunctions();
+	iziV2SetiziOs2();
   
 	var code = '';
   if(dropdown_unit==="cm"){

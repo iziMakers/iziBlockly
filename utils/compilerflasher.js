@@ -1077,6 +1077,8 @@ compilerflasher = function (loadFiles) {
                 selfPh.oldPorts = ports;
                 selfPh.loadPort();
                 selfPh.logPorts();
+								
+								console.log("new port !");
             }
         }
 
@@ -1228,6 +1230,7 @@ compilerflasher = function (loadFiles) {
                 selfCf.eventManager.fire('plugin_notification', "Please select a valid port!");
 								
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('', 'Please select a valid port!');
 										/* fin iziMakers */
                 return;
@@ -1862,6 +1865,10 @@ compilerflasher = function (loadFiles) {
      */
     this.clickedBoard = function () {
         var board = $('#cb_cf_boards').find('option:selected').text();
+				
+				console.log("selectedBoard : " + board);
+				
+				board = "Arduino Nano w/ ATmega328";			// iziMakers
 
         var actionId = 42;
         var metaData = {
@@ -1966,7 +1973,8 @@ compilerflasher = function (loadFiles) {
             compilerflasher.eventManager.fire('flash_failed', msg, progress);
 						
 						/* iziMakers */
-						toastr.error('flash_failed', 'flash_failed');
+						toastr.clear();
+						toastr.error(msg, 'Flash Failed');		// toastr.error('flash_failed', 'flash_failed');
 						/* fin iziMakers */
 
             if (progress != 0 && (progress > -1 || progress < -23) && progress != -30 && progress != -55 && progress != -56 && progress != -57) {
@@ -1999,7 +2007,8 @@ compilerflasher = function (loadFiles) {
             compilerflasher.setOperationOutput('Upload successful!');
 						
 						/* iziMakers */
-						toastr.success('Upload successful!', '');
+						toastr.clear();
+						toastr.success('Enjoy!', 'Upload successful!');
 						/* fin iziMakers */
         }
 
@@ -2038,6 +2047,7 @@ compilerflasher = function (loadFiles) {
                     selfCf.eventManager.fire('hex_failed', obj.message);
 										
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('', 'Verification failed.');
 										/* fin iziMakers */
                 }
@@ -2046,7 +2056,8 @@ compilerflasher = function (loadFiles) {
                     selfCf.eventManager.fire('hex_succeed', obj);
 										
 										/* iziMakers */
-										toastr.success('', 'Verification Successful!');
+										toastr.clear();
+										toastr.success('', 'Verification Successful!', {timeOut: 10000});
 										/* fin iziMakers */
                 }
             }
@@ -2055,6 +2066,7 @@ compilerflasher = function (loadFiles) {
                 selfCf.setOperationOutput('<i class="icon-remove"></i> Unexpected error occured. Try again later.');
 								
 								/* iziMakers */
+								toastr.clear();
 								toastr.error('Try again later.', 'Unexpected error occured. ');
 								/* fin iziMakers */
             }
@@ -2073,7 +2085,7 @@ compilerflasher = function (loadFiles) {
         window.operationInProgress = true;
 				
 								/* iziMakers */
-								toastr.info('Please wait...', 'Uploading');
+								toastr.info('Please wait...', 'Compiling...', {timeOut: 60000});		// Uploading
 								/* fin iziMakers */
 
         var actionId = 40;
@@ -2096,7 +2108,8 @@ compilerflasher = function (loadFiles) {
             selfCf.eventManager.fire('flash_failed', selfCf.chromeUpdateForProgrammersMessage);
 						
 								/* iziMakers */
-								toastr.error('error', 'error');
+								toastr.clear();
+								toastr.error('error', 'Error');
 								/* fin iziMakers */
 						
             return;
@@ -2108,6 +2121,7 @@ compilerflasher = function (loadFiles) {
             window.operationInProgress = false;
 						
 								/* iziMakers */
+								toastr.clear();
 								toastr.error('', 'Please select a valid port!');
 								/* fin iziMakers */
 						
@@ -2123,7 +2137,8 @@ compilerflasher = function (loadFiles) {
                 window.operationInProgress = false;
 								
 								/* iziMakers */
-								toastr.error('', 'There was an error compiling.');
+								toastr.clear();
+								toastr.error('obj.message', 'There was an error compiling.');
 								/* fin iziMakers */
             }
             else {
@@ -2151,7 +2166,12 @@ compilerflasher = function (loadFiles) {
 										toastr.error('', 'There is not enough space!');
 										/* fin iziMakers */
                 }
-                else {
+                else {										
+										/* iziMakers */
+										toastr.clear();
+										toastr.info('Please wait...', 'Compiling done, Uploading...', {timeOut: 60000});
+										/* fin iziMakers */
+										
                     if (selfCf.pluginHandler.connected) {
                         selfCf.pluginHandler.disconnect(false);
                         setTimeout(function () {
@@ -2194,7 +2214,8 @@ compilerflasher = function (loadFiles) {
             selfCf.eventManager.fire('flash_failed', selfCf.chromeUpdateForProgrammersMessage);
 						
 						/* iziMakers */
-						toastr.error('', 'flash_failed');
+						toastr.clear();
+						toastr.error(selfCf.chromeUpdateForProgrammersMessage, 'Flash Failed');
 						/* fin iziMakers */
 						
             return;
@@ -2206,6 +2227,7 @@ compilerflasher = function (loadFiles) {
             window.operationInProgress = false;
 						
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('', 'Please select a valid port for the programmer!');
 										/* fin iziMakers */
             return;
@@ -2220,6 +2242,7 @@ compilerflasher = function (loadFiles) {
                 window.operationInProgress = false;
 								
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('', 'There was an error compiling.');
 										/* fin iziMakers */
             }
@@ -2244,6 +2267,7 @@ compilerflasher = function (loadFiles) {
                     window.operationInProgress = false;
 										
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('', 'There is not enough space!');
 										/* fin iziMakers */
                 }
@@ -2284,6 +2308,7 @@ compilerflasher = function (loadFiles) {
                 window.operationInProgress = false;
 								
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('Try again later.', 'Unexpected error occurred. ');
 										/* fin iziMakers */
             }
@@ -2294,6 +2319,7 @@ compilerflasher = function (loadFiles) {
                 window.operationInProgress = false;
 								
 										/* iziMakers */
+										toastr.clear();
 										toastr.error('', 'Connection to server failed.');
 										/* fin iziMakers */
             });
@@ -2472,6 +2498,10 @@ compilerflasher = function (loadFiles) {
         });
         this.loaded_elements.push("cb_cf_boards");
     }
+		else {			// iziMakers
+			$("#cb_cf_boards option[value='Arduino Nano w/ ATmega328']").prop('selected', true);
+			
+		}
     if ($("select#cb_cf_ports").length > 0) {
         var $ports = $('#cb_cf_ports');
         $ports.click(function () {
@@ -2491,6 +2521,8 @@ compilerflasher = function (loadFiles) {
     if ($("button#cb_cf_flash_btn").length > 0) {
         $("#cb_cf_flash_btn")
             .click(function () {
+								console.log("click button#cb_cf_flash_btn");
+						
                 selfCf.usbflash();
             })
             .attr("disabled", "disabled");
@@ -2755,6 +2787,10 @@ compilerflasher = function (loadFiles) {
         }
 
         initPluginOrApp();
+				
+				$("#cb_cf_boards option[value='Arduino Nano w/ ATmega328']").prop('selected', true);
+				
+				console.log("board selected : 'Arduino Nano w/ ATmega328'");
     }
 
     /**
